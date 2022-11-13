@@ -58,7 +58,7 @@ public class UserController implements UserAPI {
         User userFromDB = userService.selectUserByNameAndPassword(user);
         LoginDTO loginDTO = new LoginDTO();
         if (userFromDB != null) {
-            loginDTO.setToken("12312312312312312312312");
+            loginDTO.setToken("admin-token");
         }
 
         return new ResponseData<>(0, "success1213123123", loginDTO);
