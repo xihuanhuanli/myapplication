@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.cjj.common.handler.MybatisplusHandler,\
+  com.cjj.common.filter.CORSFilter

@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+
+
+
+spring:
+  application:
+    name: usercenter
+
+  profiles:
+    active: dev
+
+  cloud:
+    nacos:
+      config:
+        server-addr: http://host.docker.internal:8848
+        namespace: 52b6b0c3-f88c-485e-952a-ed70807f268e
+        file-extension: yml
+      discovery:
+        server-addr: http://host.docker.internal:8848
+        namespace: 52b6b0c3-f88c-485e-952a-ed70807f268e
