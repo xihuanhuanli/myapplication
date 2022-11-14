@@ -3,19 +3,20 @@ package com.cjj.usercenter.controller;
 
 import com.cjj.common.ResponseData;
 import com.cjj.usercenter.api.UserInfoAPI;
-import com.cjj.usercenter.api.dto.UserDTO;
 import com.cjj.usercenter.api.dto.UserInfoDTO;
-import com.cjj.usercenter.converter.UserConverter;
 import com.cjj.usercenter.converter.UserInfoConverter;
-import com.cjj.usercenter.model.User;
 import com.cjj.usercenter.model.UserInfo;
 import com.cjj.usercenter.service.UserInfoService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -32,13 +33,19 @@ public class UserInfoController implements UserInfoAPI {
     @Autowired
     private UserInfoService userInfoService;
 
+    @Value("${salt}")
+    private String salt;
+
     UserInfoConverter converter = UserInfoConverter.INSTANCE;
 
 
 
     @Override
-    public ResponseData<UserInfoDTO> getUserInfoByUserId(UserDTO userDTO) {
-        UserInfo userInfo=userInfoService.getUserInfoByUserId(userDTO.getId());
+    public ResponseData<UserInfoDTO> getUserInfo(@RequestBody Map<String,String> map) {
+        String token = map.get("token");
+        Claims claims = Jwts.parser().setSigningKey(salt).parseClaimsJws(token).getBody();
+        String userid = claims.getId();
+        UserInfo userInfo=userInfoService.getUserInfoByUserId(Integer.valueOf(userid));
         UserInfoDTO userInfoDTO=converter.UserInfoToUserInfoDTO(userInfo);
         return new ResponseData<>(0, "success", userInfoDTO);
     }
