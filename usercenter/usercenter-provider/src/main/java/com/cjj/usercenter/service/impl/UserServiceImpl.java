@@ -2,6 +2,7 @@ package com.cjj.usercenter.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cjj.common.util.MD5Util;
+import com.cjj.usercenter.api.dto.UserInfoDTO;
 import com.cjj.usercenter.mapper.UserDao;
 import com.cjj.usercenter.model.User;
 import com.cjj.usercenter.service.UserService;
@@ -32,4 +33,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         user.setPassword(MD5Util.MD5Upper(user.getPassword()));
         return userDao.selectUserByNameAndPassword(user);
     }
+
+
 }

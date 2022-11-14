@@ -1,6 +1,7 @@
 package com.cjj.usercenter.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cjj.usercenter.api.dto.UserInfoDTO;
 import com.cjj.usercenter.model.User;
 
 /**
@@ -13,4 +14,5 @@ import com.cjj.usercenter.model.User;
  */
 public interface UserService extends IService<User> {
     User selectUserByNameAndPassword(User user);
+
 }

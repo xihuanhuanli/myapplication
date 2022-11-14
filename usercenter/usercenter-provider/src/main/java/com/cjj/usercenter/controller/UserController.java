@@ -6,6 +6,7 @@ import com.cjj.usercenter.api.UserAPI;
 import com.cjj.usercenter.api.dto.LoginDTO;
 import com.cjj.usercenter.api.dto.UserDTO;
 
+import com.cjj.usercenter.api.dto.UserInfoDTO;
 import com.cjj.usercenter.converter.UserConverter;
 import com.cjj.usercenter.model.User;
 import com.cjj.usercenter.service.UserService;
@@ -63,4 +64,7 @@ public class UserController implements UserAPI {
 
         return new ResponseData<>(0, "success1213123123", loginDTO);
     }
+
+
+
 }
