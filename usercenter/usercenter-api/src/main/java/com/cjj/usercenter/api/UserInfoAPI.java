@@ -18,4 +18,7 @@ public interface UserInfoAPI {
     @RequestMapping(value = "/addUserInfo",method = RequestMethod.POST)
     ResponseData<UserInfoDTO> addUserInfo(@RequestBody  UserInfoDTO userInfoDTO);
 
+    @RequestMapping(value = "/logout",method = RequestMethod.POST)
+    ResponseData<UserInfoDTO> logout();
+
 }

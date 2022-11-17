@@ -61,4 +61,9 @@ public class UserInfoController implements UserInfoAPI {
         }
     }
 
+    @Override
+    public ResponseData logout() {
+        return new ResponseData<>(0, "success", null);
+    }
+
 }
