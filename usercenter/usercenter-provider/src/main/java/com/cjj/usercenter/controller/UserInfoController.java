@@ -44,7 +44,11 @@ public class UserInfoController implements UserInfoAPI {
     public ResponseData<UserInfoDTO> getUserInfo(@RequestBody Map<String,String> map) {
         String token = map.get("token");
         Claims claims = Jwts.parser().setSigningKey(salt).parseClaimsJws(token).getBody();
+        System.out.println("212212");
         String userid = claims.getId();
+        for (int i = 0; i < 10 ; i++) {
+            System.out.println(i);
+        }
         System.out.println("123123123");
         int a = 0;
         UserInfo userInfo=userInfoService.getUserInfoByUserId(Integer.valueOf(userid));
