@@ -45,6 +45,8 @@ public class UserInfoController implements UserInfoAPI {
         String token = map.get("token");
         Claims claims = Jwts.parser().setSigningKey(salt).parseClaimsJws(token).getBody();
         String userid = claims.getId();
+        System.out.println("123123123");
+        int a = 0;
         UserInfo userInfo=userInfoService.getUserInfoByUserId(Integer.valueOf(userid));
         UserInfoDTO userInfoDTO=converter.UserInfoToUserInfoDTO(userInfo);
         return new ResponseData<>(0, "success", userInfoDTO);
